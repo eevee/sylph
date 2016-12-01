@@ -46,7 +46,7 @@ fn main() {
     io::stdin().read_to_string(&mut buffer);
     let result = function_call(buffer.as_bytes());
     match result {
-        IResult::Done(leftovers, call) => {
+        IResult::Done(_leftovers, call) => {
             match call.function_name {
                 "print" => {
                     print(&call.argument);
@@ -54,7 +54,7 @@ fn main() {
                 _ => panic!("oh no no such function {}", call.function_name),
             }
         }
-        IResult::Incomplete(needed) => {
+        IResult::Incomplete(_needed) => {
             println!("early termination what");
         }
         IResult::Error(err) => {
